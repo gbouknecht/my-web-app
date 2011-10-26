@@ -7,7 +7,7 @@
     <display-name>My Web App</display-name>
 
     <listener>
-        <listener-class>name.bouknecht.mywebapp.listener.ApplicationContextListener</listener-class>
+        <listener-class>name.bouknecht.mywebapp.listener.MyContextListener</listener-class>
     </listener>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

@@ -5,7 +5,7 @@ import javax.servlet.ServletContextListener;
 
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
-public class ApplicationContextListener implements ServletContextListener {
+public class MyContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         SLF4JBridgeHandler.install();
     }
