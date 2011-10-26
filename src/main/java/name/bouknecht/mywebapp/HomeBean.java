@@ -14,6 +14,6 @@ public class HomeBean {
     }
 
     public String getMessage() {
-        return "Hello, from " + HomeBean.class;
+        return String.format("Hello, from %s!", HomeBean.class);
     }
 }
