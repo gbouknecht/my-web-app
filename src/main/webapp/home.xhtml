@@ -14,7 +14,7 @@
                 My Web App
             </ui:define>
             <ui:define name="content">
-                #{homeBean.message}
+                <h:outputText value="#{messages.welcomeText}" escape="false" />
             </ui:define>
         </ui:composition>
 <!-- Any content outside of the UI Composition tag will be ignored. -->
