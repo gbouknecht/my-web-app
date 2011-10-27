@@ -2,12 +2,13 @@ package name.bouknecht.mywebapp;
 
 import javax.inject.Named;
 
+import name.bouknecht.mywebapp.annotation.RequestScoped;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Scope;
 
 @Named
-@Scope("request")
+@RequestScoped
 public class HomeBean {
     private static final Logger logger = LoggerFactory.getLogger(HomeBean.class);
 
