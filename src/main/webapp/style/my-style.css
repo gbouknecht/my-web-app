@@ -1,0 +1,13 @@
+/* my-style.css */
+
+#header {
+    background: lightgray;
+}
+
+#content {
+    padding: 30px 50px;
+}
+
+#footer {
+    background: lightgray;
+}
