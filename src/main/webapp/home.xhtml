@@ -16,6 +16,11 @@
             <ui:define name="content">
                 <h:outputText value="#{messages.welcomeText}" escape="false" />
                 <br />#{homeBean.message}
+                <ul>
+                    <li>Name: #{messages.applicationName}</li>
+                    <li>Version: #{messages.applicationVersion}</li>
+                    <li>Build timestamp: #{messages.applicationBuildTimestamp}</li>
+                </ul>
             </ui:define>
         </ui:composition>
 <!-- Any content outside of the UI Composition tag will be ignored. -->

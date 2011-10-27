@@ -7,7 +7,7 @@
     <artifactId>my-web-app</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>my-web-app Maven Webapp</name>
+    <name>My Web App</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -83,5 +83,14 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
+    <properties>
+        <buildTimestamp>${maven.build.timestamp}</buildTimestamp>
+    </properties>
 </project>
