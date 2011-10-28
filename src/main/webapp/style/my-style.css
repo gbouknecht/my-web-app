@@ -5,15 +5,26 @@
     padding: 0;
 }
 
+body {
+    font-family: helvetica, arial, verdana;
+    font-size: 12px;
+}
+
 #header {
     background: lightgray;
     height: 50px;
+    padding-left: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 #navigation {
     background: whitesmoke;
-    height: 50px;
+    height: 20px;
     padding-left: 50px;
+    line-height: 50px;
 }
 
 #navigation ul {
@@ -25,14 +36,30 @@
 }
 
 #navigation ul li a {
-    padding-right: 20px;
+    padding-right: 30px;
     display: block;
-    line-height: 50px;
+    line-height: 20px;
     text-decoration: none;
+    color: black;
 }
 
 #content {
     padding: 30px 50px;
+}
+
+#content p {
+    margin-top: 2ex;
+}
+
+#content table {
+    border-style: solid;
+    border-width: 2px;
+    border-color: lightgray;
+ }
+
+#content table tr td {
+    background: whitesmoke;
+    padding: 1ex 1em;
 }
 
 #footer {

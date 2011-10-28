@@ -13,12 +13,24 @@
             <ui:define name="title">
                 #{messages.applicationName} - #{messages.about}
             </ui:define>
+            <ui:define name="header">
+                #{messages.about}
+            </ui:define>
             <ui:define name="content">
-                <ul>
-                    <li>#{messages.name}: #{messages.applicationName}</li>
-                    <li>#{messages.version}: #{messages.applicationVersion}</li>
-                    <li>#{messages.buildTimestamp}: #{messages.applicationBuildTimestamp}</li>
-                </ul>
+                <table>
+                    <tr>
+                        <td>#{messages.name}</td>
+                        <td>#{messages.applicationName}</td>
+                    </tr>
+                    <tr>
+                        <td>#{messages.version}</td>
+                        <td>#{messages.applicationVersion}</td>
+                    </tr>
+                    <tr>
+                        <td>#{messages.buildTimestamp}</td>
+                        <td>#{messages.applicationBuildTimestamp}</td>
+                    </tr>
+                </table>
             </ui:define>
         </ui:composition>
 <!-- Any content outside of the UI Composition tag will be ignored. -->
