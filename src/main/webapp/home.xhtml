@@ -11,7 +11,7 @@
 <!-- Any content outside of the UI Composition tag will be ignored. -->
         <ui:composition template="/templates/default-page.xhtml">
             <ui:define name="title">
-                My Web App
+                #{messages.applicationName} - #{messages.home}
             </ui:define>
             <ui:define name="content">
                 <h:outputText value="#{messages.welcomeText}" escape="false" />
