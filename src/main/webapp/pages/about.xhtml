@@ -11,10 +11,14 @@
 <!-- Any content outside of the UI Composition tag will be ignored. -->
         <ui:composition template="/pages/templates/default-page.xhtml">
             <ui:define name="title">
-                #{messages.applicationName} - #{messages.home}
+                #{messages.applicationName} - #{messages.about}
             </ui:define>
             <ui:define name="content">
-                <h:outputText value="#{messages.welcomeText}" escape="false" />
+                <ul>
+                    <li>#{messages.name}: #{messages.applicationName}</li>
+                    <li>#{messages.version}: #{messages.applicationVersion}</li>
+                    <li>#{messages.buildTimestamp}: #{messages.applicationBuildTimestamp}</li>
+                </ul>
             </ui:define>
         </ui:composition>
 <!-- Any content outside of the UI Composition tag will be ignored. -->

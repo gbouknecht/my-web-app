@@ -7,4 +7,9 @@
         <pattern value="/" />
         <view-id value="/pages/home.jsf" />
     </url-mapping>
+    
+    <url-mapping id="about">
+        <pattern value="/about" />
+        <view-id value="/pages/about.jsf" />
+    </url-mapping>
 </pretty-config>
