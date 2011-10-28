@@ -5,6 +5,6 @@
                xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.0 http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.0.xsd">
     <url-mapping id="home">
         <pattern value="/" />
-        <view-id value="/home.jsf" />
+        <view-id value="/pages/home.jsf" />
     </url-mapping>
 </pretty-config>
