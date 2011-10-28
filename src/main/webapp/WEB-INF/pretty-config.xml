@@ -8,6 +8,11 @@
         <view-id value="/pages/home.jsf" />
     </url-mapping>
     
+    <url-mapping id="accounts">
+        <pattern value="/accounts" />
+        <view-id value="/pages/accounts.jsf" />
+    </url-mapping>
+    
     <url-mapping id="about">
         <pattern value="/about" />
         <view-id value="/pages/about.jsf" />
