@@ -82,7 +82,7 @@ body {
     border-color: lightgray;
  }
 
-#content table tr td {
+#content table tr th, #content table tr td {
     background: whitesmoke;
     padding: 1ex 1em;
 }

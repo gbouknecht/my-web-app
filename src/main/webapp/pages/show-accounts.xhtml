@@ -20,6 +20,21 @@
                 <ui:include src="includes/accounts-actions.xhtml" />
             </ui:define>
             <ui:define name="content">
+                <h:dataTable var="account" value="#{showAccountsController.accounts}" rendered="#{not empty showAccountsController.accounts}">
+                    <h:column>
+                        <f:facet name="header">#{messages.userid}</f:facet>
+                        #{account.userId}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{messages.firstname}</f:facet>
+                        #{account.firstname}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{messages.lastname}</f:facet>
+                        #{account.lastname}
+                    </h:column>
+                </h:dataTable>
+                <h:outputText value="#{messages.noAccountsText}" escape="false" rendered="#{empty showAccountsController.accounts}" />
             </ui:define>
         </ui:composition>
 <!-- Any content outside of the UI Composition tag will be ignored. -->
