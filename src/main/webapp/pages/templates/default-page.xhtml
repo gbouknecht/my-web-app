@@ -22,11 +22,19 @@
                 <li><h:link outcome="about"    value="#{messages.about}" /></li>
             </ul>
         </div>
-        <div id="content">
-            <ui:insert name="content">
-                <i>Default content</i>
-            </ui:insert>
+        <div id="actions-and-content">
+            <div id="actions">
+                <ui:insert name="actions">
+                    &nbsp;
+                </ui:insert>
+            </div>
+            <div id="content">
+                <ui:insert name="content">
+                    <i>Default content</i>
+                </ui:insert>
+            </div>
         </div>
+        <div class="clear" />
         <div id="footer">
             <ui:insert name="footer" />
         </div>

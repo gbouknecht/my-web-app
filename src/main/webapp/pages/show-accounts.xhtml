@@ -11,16 +11,15 @@
 <!-- Any content outside of the UI Composition tag will be ignored. -->
         <ui:composition template="/pages/templates/default-page.xhtml">
             <ui:define name="title">
-                #{messages.applicationName} - #{messages.accounts}
+                #{messages.applicationName} - #{messages.showAccounts}
             </ui:define>
             <ui:define name="header">
-                #{messages.accounts}
+                #{messages.showAccounts}
             </ui:define>
             <ui:define name="actions">
                 <ui:include src="includes/accounts-actions.xhtml" />
             </ui:define>
             <ui:define name="content">
-                <i>The accounts will be shown here.</i>
             </ui:define>
         </ui:composition>
 <!-- Any content outside of the UI Composition tag will be ignored. -->

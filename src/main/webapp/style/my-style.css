@@ -10,6 +10,10 @@ body {
     font-size: 12px;
 }
 
+.clear {
+    clear: both;
+}
+
 #header {
     background: lightgray;
     height: 50px;
@@ -43,8 +47,29 @@ body {
     color: black;
 }
 
+#actions {
+    float: left;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 50px;
+    width: 100px;
+}
+
+#actions ul {
+    list-style-type: none;
+}
+
+#actions ul li a {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
 #content {
-    padding: 30px 50px;
+    float: left;
+    padding: 30px 25px;
 }
 
 #content p {
