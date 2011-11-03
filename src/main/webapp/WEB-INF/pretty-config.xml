@@ -16,7 +16,7 @@
     <url-mapping id="showAccounts">
         <pattern value="/show-accounts" />
         <view-id value="/pages/show-accounts.jsf" />
-        <action>#{showAccountsController.loadAccounts}</action>
+        <action>#{showAccountsController.initialize}</action>
     </url-mapping>
 
     <url-mapping id="addAccount">

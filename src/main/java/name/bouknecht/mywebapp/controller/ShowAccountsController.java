@@ -1,26 +1,29 @@
 package name.bouknecht.mywebapp.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import name.bouknecht.mywebapp.annotation.RequestScoped;
+import name.bouknecht.mywebapp.dao.AccountDao;
 import name.bouknecht.mywebapp.model.Account;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
 @RequestScoped
 public class ShowAccountsController {
+
+    @Autowired
+    private AccountDao accountDao;
+
     private List<Account> accounts;
 
-    public void loadAccounts() {
-        accounts = new ArrayList<Account>();
-        accounts.add(new Account("ppieterse", "Piet", "Pieterse"));
-        accounts.add(new Account("jjansse", "Jan", "Jansse"));
-        accounts.add(new Account("ggerritse", "Gerrit", "Gerritse"));
+    public void initialize() {
+        accounts = accountDao.findAllAccounts();
     }
 
     public List<Account> getAccounts() {
+        assert accounts != null;
         return accounts;
     }
 }
