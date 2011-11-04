@@ -7,36 +7,32 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.test.util.ReflectionTestUtils.setField;
 
-import java.util.Arrays;
 import java.util.List;
 
 import name.bouknecht.mywebapp.dao.AccountDao;
 import name.bouknecht.mywebapp.model.Account;
+import name.bouknecht.mywebapp.test.data.TestData;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class ShowAccountsControllerTest {
+    private TestData               data;
     private ShowAccountsController showAccountsController;
     private AccountDao             accountDao;
-    private List<Account>          expectedAccounts;
 
     @Before
     public void setUp() {
+        data                   = new TestData();
         showAccountsController = new ShowAccountsController();
-        accountDao = mock(AccountDao.class);
-        setField(showAccountsController, "accountDao", accountDao);
-        expectedAccounts = createAccounts();
-    }
+        accountDao             = mock(AccountDao.class);
 
-    private List<Account> createAccounts() {
-        return Arrays.asList(new Account(0, "user1", "first1", "last1"),
-                             new Account(1, "user2", "first2", "last2"),
-                             new Account(2, "user3", "first3", "last3"));
+        setField(showAccountsController, "accountDao", accountDao);
     }
 
     @Test
     public void shouldContainAllAccountsAfterInitialization() {
+        List<Account> expectedAccounts = data.createAccounts();
         given(accountDao.findAllAccounts()).willReturn(expectedAccounts);
         showAccountsController.initialize();
         List<Account> actualAccounts = showAccountsController.getAccounts();
