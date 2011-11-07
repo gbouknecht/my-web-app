@@ -157,6 +157,7 @@
         </resources>
     </build>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <buildTimestamp>${maven.build.timestamp}</buildTimestamp>
     </properties>
 </project>
