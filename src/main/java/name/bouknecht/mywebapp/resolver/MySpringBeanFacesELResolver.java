@@ -17,6 +17,11 @@ public class MySpringBeanFacesELResolver extends SpringBeanFacesELResolver {
             elContext.setPropertyResolved(true);
             return ((MessageSource) base).getMessage((String) property, null, (String) property, getLocale());
         }
+        return getValueFromSuper(elContext, base, property);
+    }
+
+    /* package-private for unit test */
+    Object getValueFromSuper(ELContext elContext, Object base, Object property) {
         return super.getValue(elContext, base, property);
     }
 
