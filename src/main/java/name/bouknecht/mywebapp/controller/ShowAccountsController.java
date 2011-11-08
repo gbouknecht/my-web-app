@@ -20,7 +20,7 @@ public class ShowAccountsController {
     private String        findText;
 
     public void initialize() {
-        accounts = accountDao.findAllAccounts();
+        find();
     }
 
     public void find() {

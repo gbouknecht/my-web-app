@@ -33,7 +33,7 @@ public class ShowAccountsControllerTest {
     @Test
     public void shouldContainAllAccountsAfterInitialization() {
         List<Account> expectedAccounts = data.createAccounts();
-        given(accountDao.findAllAccounts()).willReturn(expectedAccounts);
+        given(accountDao.find(null)).willReturn(expectedAccounts);
 
         showAccountsController.initialize();
         List<Account> actualAccounts = showAccountsController.getAccounts();
@@ -46,7 +46,7 @@ public class ShowAccountsControllerTest {
     public void shouldContainFoundAccountsAfterFind() {
         List<Account> expectedAccounts = data.createAccounts();
         expectedAccounts.remove(0);
-        given(accountDao.findAllAccounts()).willReturn(data.createAccounts());
+        given(accountDao.find(null)).willReturn(data.createAccounts());
         given(accountDao.find("abc")).willReturn(expectedAccounts);
 
         showAccountsController.initialize();
