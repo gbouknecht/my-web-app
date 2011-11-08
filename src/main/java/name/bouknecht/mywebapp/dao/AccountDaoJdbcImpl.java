@@ -24,12 +24,12 @@ public class AccountDaoJdbcImpl implements AccountDao {
         jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
-    public List<Account> findAllAccounts() {
+    public List<Account> findAll() {
         return jdbcTemplate.query("select * from account", (SqlParameterSource) null, new AccountMapper());
     }
 
     public List<Account> find(String text) {
-        if (text == null) return findAllAccounts();
+        if (text == null) return findAll();
         return jdbcTemplate.query("select * from account where lower(userid) like :text or lower(firstname) like :text or lower(lastname) like :text",
                                   new MapSqlParameterSource("text", "%" + text.toLowerCase() + "%"),
                                   new AccountMapper());

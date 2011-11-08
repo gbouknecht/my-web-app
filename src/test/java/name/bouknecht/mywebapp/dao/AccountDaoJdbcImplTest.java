@@ -34,10 +34,10 @@ public class AccountDaoJdbcImplTest {
     }
 
     @Test
-    public void findAllAccountsShouldReturnAllAccounts() {
+    public void findAllShouldReturnAllAccounts() {
         List<Account> expectedAccounts = data.createAccounts();
 
-        List<Account> actualAccounts = accountDao.findAllAccounts();
+        List<Account> actualAccounts = accountDao.findAll();
 
         assertThat(actualAccounts, hasSize(expectedAccounts.size()));
         assertThat(actualAccounts, hasAccounts(expectedAccounts));
