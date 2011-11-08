@@ -17,13 +17,26 @@ public class ShowAccountsController {
     private AccountDao accountDao;
 
     private List<Account> accounts;
+    private String        findText;
 
     public void initialize() {
         accounts = accountDao.findAllAccounts();
     }
 
+    public void find() {
+        accounts = accountDao.find(findText);
+    }
+
     public List<Account> getAccounts() {
         assert accounts != null;
         return accounts;
+    }
+
+    public String getFindText() {
+        return findText;
+    }
+
+    public void setFindText(String findText) {
+        this.findText = findText;
     }
 }

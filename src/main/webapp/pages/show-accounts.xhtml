@@ -20,6 +20,12 @@
                 <ui:include src="includes/accounts-actions.xhtml" />
             </ui:define>
             <ui:define name="content">
+                <div id="find">
+                    <h:form id="find-form">
+                        <h:inputText id="find-input-text" value="#{showAccountsController.findText}" />
+                        <h:commandButton id="find-button" value="#{messages.find}" action="#{showAccountsController.find}" />
+                    </h:form>
+                </div>
                 <h:dataTable var="account" value="#{showAccountsController.accounts}" rendered="#{not empty showAccountsController.accounts}">
                     <h:column>
                         <f:facet name="header">#{messages.userid}</f:facet>

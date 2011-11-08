@@ -87,6 +87,14 @@ body {
     padding: 1ex 1em;
 }
 
+#content #find {
+    padding-bottom: 2ex;
+}
+
+#content #find input {
+    margin-right: 1em;
+}
+
 #footer {
     background: lightgray;
     height: 50px;

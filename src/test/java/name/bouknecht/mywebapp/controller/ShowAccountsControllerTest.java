@@ -34,8 +34,26 @@ public class ShowAccountsControllerTest {
     public void shouldContainAllAccountsAfterInitialization() {
         List<Account> expectedAccounts = data.createAccounts();
         given(accountDao.findAllAccounts()).willReturn(expectedAccounts);
+
         showAccountsController.initialize();
         List<Account> actualAccounts = showAccountsController.getAccounts();
+
+        assertThat(actualAccounts, hasSize(expectedAccounts.size()));
+        assertThat(actualAccounts, hasAccounts(expectedAccounts));
+    }
+
+    @Test
+    public void shouldContainFoundAccountsAfterFind() {
+        List<Account> expectedAccounts = data.createAccounts();
+        expectedAccounts.remove(0);
+        given(accountDao.findAllAccounts()).willReturn(data.createAccounts());
+        given(accountDao.find("abc")).willReturn(expectedAccounts);
+
+        showAccountsController.initialize();
+        showAccountsController.setFindText("abc");
+        showAccountsController.find();
+        List<Account> actualAccounts = showAccountsController.getAccounts();
+
         assertThat(actualAccounts, hasSize(expectedAccounts.size()));
         assertThat(actualAccounts, hasAccounts(expectedAccounts));
     }

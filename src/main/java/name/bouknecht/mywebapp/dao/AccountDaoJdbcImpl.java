@@ -9,21 +9,30 @@ import javax.sql.DataSource;
 import name.bouknecht.mywebapp.model.Account;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class AccountDaoJdbcImpl implements AccountDao {
-    private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
     public AccountDaoJdbcImpl(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     public List<Account> findAllAccounts() {
-        return jdbcTemplate.query("select id, userid, firstname, lastname from account", new AccountMapper());
+        return jdbcTemplate.query("select * from account", (SqlParameterSource) null, new AccountMapper());
+    }
+
+    public List<Account> find(String text) {
+        if (text == null) return findAllAccounts();
+        return jdbcTemplate.query("select * from account where lower(userid) like :text or lower(firstname) like :text or lower(lastname) like :text",
+                                  new MapSqlParameterSource("text", "%" + text.toLowerCase() + "%"),
+                                  new AccountMapper());
     }
 
     private static class AccountMapper implements RowMapper<Account> {
