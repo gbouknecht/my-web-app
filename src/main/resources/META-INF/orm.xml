@@ -8,7 +8,7 @@
     ]]></query></named-query>
 
     <named-query name="findAccounts"><query><![CDATA[
-        from Account where    lower(userid)    like :text
+        from Account where    lower(userId)    like :text
                            or lower(firstname) like :text
                            or lower(lastname)  like :text
     ]]></query></named-query>

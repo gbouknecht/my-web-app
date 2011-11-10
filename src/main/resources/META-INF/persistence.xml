@@ -5,13 +5,18 @@
              version="2.0">
     <persistence-unit name="main" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <properties>
+            <property name="hibernate.format_sql"          value="true" />
+            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy" />
+        </properties>
     </persistence-unit>
 
     <persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
-            <property name="hibernate.format_sql"   value="true" />
+            <property name="hibernate.hbm2ddl.auto"        value="create-drop" />
+            <property name="hibernate.format_sql"          value="true" />
+            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy" />
         </properties>
     </persistence-unit>
 </persistence>

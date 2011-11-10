@@ -11,7 +11,7 @@ import javax.persistence.UniqueConstraint;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "userid" }))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "userId" }))
 public class Account {
 
     @Id
