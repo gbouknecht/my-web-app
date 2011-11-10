@@ -2,19 +2,28 @@ package name.bouknecht.mywebapp.model;
 
 import static org.apache.commons.lang3.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "userid" }))
 public class Account {
 
     @Id
     private Integer id;
 
+    @Column(length = 50, nullable = false)
     private String  userId;
+
+    @Column(length = 150, nullable = false)
     private String  firstname;
+
+    @Column(length = 150, nullable = false)
     private String  lastname;
 
     public Account() {
