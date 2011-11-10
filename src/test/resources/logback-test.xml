@@ -6,14 +6,17 @@
     </contextListener>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/my-web-app.log</file>
+        <file>logs/my-web-app-test.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/my-web-app.%d.log</fileNamePattern>
+            <fileNamePattern>logs/my-web-app-test.%d.log</fileNamePattern>
         </rollingPolicy>
         <encoder>
             <pattern>%date|%-30.30thread|%-30.30logger{30}|%-5level|%message%n</pattern>
         </encoder>
     </appender>
+
+    <logger name="org.hibernate.SQL"          level="DEBUG" />
+    <logger name="org.hibernate.tool.hbm2ddl" level="DEBUG" />
 
     <root level="INFO">
         <appender-ref ref="FILE" />

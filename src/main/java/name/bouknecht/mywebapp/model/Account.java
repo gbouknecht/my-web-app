@@ -2,13 +2,23 @@ package name.bouknecht.mywebapp.model;
 
 import static org.apache.commons.lang3.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+@Entity
 public class Account {
+
+    @Id
     private Integer id;
+
     private String  userId;
     private String  firstname;
     private String  lastname;
+
+    public Account() {
+    }
 
     public Account(Integer id, String userId, String firstname, String lastname) {
         this.id        = id;

@@ -9,33 +9,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 import name.bouknecht.mywebapp.model.Account;
+import name.bouknecht.mywebapp.test.data.TestDao;
 import name.bouknecht.mywebapp.test.data.TestData;
-import name.bouknecht.mywebapp.test.data.TestDatabase;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
-public class AccountDaoJdbcImplTest {
-    private TestData     data;
-    private TestDatabase database;
-    private AccountDao   accountDao;
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("/testContext.xml")
+@Transactional
+public class AccountDaoImplTest {
+
+    @Autowired
+    private AccountDao accountDao;
+
+    @Autowired
+    private TestDao testDao;
+
+    private final TestData testData = new TestData();
 
     @Before
     public void setUp() {
-        data       = new TestData();
-        database   = new TestDatabase(data);
-        accountDao = new AccountDaoJdbcImpl(database.getDataSource());
-    }
-
-    @After
-    public void tearDown() {
-        database.shutdown();
+        testDao.insertTestData(testData);
     }
 
     @Test
     public void findAllShouldReturnAllAccounts() {
-        List<Account> expectedAccounts = data.createAccounts();
+        List<Account> expectedAccounts = testData.createAccounts();
 
         List<Account> actualAccounts = accountDao.findAll();
 
@@ -45,7 +50,7 @@ public class AccountDaoJdbcImplTest {
 
     @Test
     public void findWithNullShouldReturnAllAccounts() {
-        List<Account> expectedAccounts = data.createAccounts();
+        List<Account> expectedAccounts = testData.createAccounts();
 
         List<Account> actualAccounts = accountDao.find(null);
 
@@ -69,7 +74,7 @@ public class AccountDaoJdbcImplTest {
     }
 
     private void verifyThatFindWithGivenTextReturnsMatchingAccounts(String text) {
-        List<Account> expectedAccounts = filter(data.createAccounts(), text);
+        List<Account> expectedAccounts = filter(testData.createAccounts(), text);
 
         List<Account> actualAccounts = accountDao.find(text);
 
