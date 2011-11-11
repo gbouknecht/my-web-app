@@ -2,20 +2,18 @@ package name.bouknecht.mywebapp.test.data;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import name.bouknecht.mywebapp.model.Account;
 
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class TestDao {
 
-    @Resource
-    private DataSource testDataSource;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public TestDao insertTestData(TestData testData) {
         insertAccounts(testData.createAccounts());
@@ -23,9 +21,8 @@ public class TestDao {
     }
 
     private void insertAccounts(List<Account> accounts) {
-        SimpleJdbcInsert insertAccount = new SimpleJdbcInsert(testDataSource).withTableName(Account.class.getSimpleName());
         for (Account account : accounts) {
-            insertAccount.execute(new BeanPropertySqlParameterSource(account));
+            entityManager.persist(account);
         }
     }
 }
