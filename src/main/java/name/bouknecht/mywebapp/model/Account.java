@@ -1,10 +1,13 @@
 package name.bouknecht.mywebapp.model;
 
+import static javax.persistence.GenerationType.SEQUENCE;
 import static org.apache.commons.lang3.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -15,22 +18,23 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Account {
 
     @Id
+    @GeneratedValue(strategy = SEQUENCE, generator = "account_id_seq")
+    @SequenceGenerator(name = "account_id_seq", sequenceName = "account_id_seq")
     private Integer id;
 
     @Column(length = 50, nullable = false)
-    private String  userId;
+    private String userId;
 
     @Column(length = 150, nullable = false)
-    private String  firstname;
+    private String firstname;
 
     @Column(length = 150, nullable = false)
-    private String  lastname;
+    private String lastname;
 
     public Account() {
     }
 
-    public Account(Integer id, String userId, String firstname, String lastname) {
-        this.id        = id;
+    public Account(String userId, String firstname, String lastname) {
         this.userId    = userId;
         this.firstname = firstname;
         this.lastname  = lastname;
@@ -38,10 +42,6 @@ public class Account {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getUserId() {

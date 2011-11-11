@@ -1,9 +1,11 @@
 package name.bouknecht.mywebapp.test.hamcrest;
 
+import static java.lang.Integer.MAX_VALUE;
 import static name.bouknecht.mywebapp.test.hamcrest.IsSameAccount.sameAccountAs;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+import static org.springframework.test.util.ReflectionTestUtils.setField;
 import name.bouknecht.mywebapp.model.Account;
 
 import org.junit.Before;
@@ -20,7 +22,7 @@ public class IsSameAccountTest {
     }
 
     private Account createAccount() {
-        return new Account(0, "userid0", "firstname0", "lastname0");
+        return new Account("userid0", "firstname0", "lastname0");
     }
 
     @Test
@@ -45,9 +47,9 @@ public class IsSameAccountTest {
     }
 
     @Test
-    public void shouldNotMatchWhenIdFieldsAreNotTheSame() {
-        actualAccount.setId(1);
-        assertThat(actualAccount, is(not(sameAccountAs(expectedAccount))));
+    public void shouldMatchWhenOnlyIdFieldsAreNotTheSame() {
+        setField(actualAccount, "id", MAX_VALUE);
+        assertThat(actualAccount, is(sameAccountAs(expectedAccount)));
     }
 
     @Test

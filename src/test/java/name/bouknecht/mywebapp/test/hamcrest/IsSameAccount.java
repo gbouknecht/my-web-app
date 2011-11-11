@@ -22,8 +22,7 @@ public class IsSameAccount extends BaseMatcher<Account> {
     }
 
     private boolean areEqual(Account expectedAccount, Account actualAccount) {
-        return    ObjectUtils.equals(expectedAccount.getId(),        actualAccount.getId())
-               && ObjectUtils.equals(expectedAccount.getUserId(),    actualAccount.getUserId())
+        return    ObjectUtils.equals(expectedAccount.getUserId(),    actualAccount.getUserId())
                && ObjectUtils.equals(expectedAccount.getFirstname(), actualAccount.getFirstname())
                && ObjectUtils.equals(expectedAccount.getLastname(),  actualAccount.getLastname());
     }

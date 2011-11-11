@@ -27,9 +27,9 @@ public class HasAccountsTest {
     }
 
     private List<Account> createAccounts() {
-        return new ArrayList<Account>(Arrays.asList(new Account(0, "userid0", "firstname0", "lastname0"),
-                                                    new Account(1, "userid1", "firstname1", "lastname1"),
-                                                    new Account(2, "userid2", "firstname2", "lastname2")));
+        return new ArrayList<Account>(Arrays.asList(new Account("userid0", "firstname0", "lastname0"),
+                                                    new Account("userid1", "firstname1", "lastname1"),
+                                                    new Account("userid2", "firstname2", "lastname2")));
     }
 
     @Test
