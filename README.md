@@ -28,3 +28,8 @@ For redeployments:
 
 1. Run <code>mvn clean tomcat:undeploy tomcat:deploy</code>.
 
+You may need to increase the maximum space for Java's Permanent Generation.
+For example, by adding the following line at the beginning of Tomcat's
+<code>bin/catalina.sh</code>:
+
+    JAVA_OPTS="$JAVA_OPTS -XX:MaxPermSize=256M"
