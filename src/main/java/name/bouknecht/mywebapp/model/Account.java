@@ -11,7 +11,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
+import name.bouknecht.mywebapp.annotation.MaxLength;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -28,15 +29,15 @@ public class Account {
     private Integer id;
 
     @Column(length = USER_ID_MAX_LENGTH, nullable = false)
-    @NotNull @Size(max = USER_ID_MAX_LENGTH)
+    @NotNull @MaxLength(USER_ID_MAX_LENGTH)
     private String userId;
 
     @Column(length = FIRSTNAME_MAX_LENGTH, nullable = false)
-    @NotNull @Size(max = FIRSTNAME_MAX_LENGTH)
+    @NotNull @MaxLength(FIRSTNAME_MAX_LENGTH)
     private String firstname;
 
     @Column(length = LASTNAME_MAX_LENGTH, nullable = false)
-    @NotNull @Size(max = LASTNAME_MAX_LENGTH)
+    @NotNull @MaxLength(LASTNAME_MAX_LENGTH)
     private String lastname;
 
     public Account() {
