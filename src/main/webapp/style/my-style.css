@@ -10,10 +10,6 @@ body {
     font-size: 12px;
 }
 
-.clear {
-    clear: both;
-}
-
 #header {
     background: lightgray;
     height: 50px;
@@ -76,13 +72,13 @@ body {
     margin-top: 2ex;
 }
 
-#content table {
+#content div.data table {
     border-style: solid;
     border-width: 2px;
     border-color: lightgray;
  }
 
-#content table tr th, #content table tr td {
+#content div.data table tr th, #content div.data table tr td {
     background: whitesmoke;
     padding: 1ex 1em;
 }
@@ -95,7 +91,28 @@ body {
     margin-right: 1em;
 }
 
+#content div.form table {
+} 
+
+#content div.form table tr th, #content div.form table tr td {
+    padding-top: 1ex;
+    padding-bottom: 1ex;
+    padding-right: 1em;
+} 
+
+#content div.form div.actions {
+    margin-top: 2ex;
+}
+
 #footer {
     background: lightgray;
     height: 50px;
+}
+
+.clear {
+    clear: both;
+}
+
+.invalid {
+    color: red;
 }

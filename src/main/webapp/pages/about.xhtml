@@ -17,20 +17,22 @@
                 #{messages.about}
             </ui:define>
             <ui:define name="content">
-                <table>
-                    <tr>
-                        <td>#{messages.name}</td>
-                        <td>#{messages.applicationName}</td>
-                    </tr>
-                    <tr>
-                        <td>#{messages.version}</td>
-                        <td>#{messages.applicationVersion}</td>
-                    </tr>
-                    <tr>
-                        <td>#{messages.buildTimestamp}</td>
-                        <td>#{messages.applicationBuildTimestamp}</td>
-                    </tr>
-                </table>
+                <div class="data">
+                    <table>
+                        <tr>
+                            <td>#{messages.name}</td>
+                            <td>#{messages.applicationName}</td>
+                        </tr>
+                        <tr>
+                            <td>#{messages.version}</td>
+                            <td>#{messages.applicationVersion}</td>
+                        </tr>
+                        <tr>
+                            <td>#{messages.buildTimestamp}</td>
+                            <td>#{messages.applicationBuildTimestamp}</td>
+                        </tr>
+                    </table>
+                </div>
             </ui:define>
         </ui:composition>
 <!-- Any content outside of the UI Composition tag will be ignored. -->

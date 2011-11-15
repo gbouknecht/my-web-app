@@ -20,6 +20,26 @@
                 <ui:include src="includes/accounts-actions.xhtml" />
             </ui:define>
             <ui:define name="content">
+                <h:form prependId="false">
+                    <div class="form">
+                        <h:panelGrid columns="3">
+                            <h:outputLabel value="#{messages.userId}" for="user-id-input-text" />
+                            <h:inputText id="user-id-input-text" value="#{addAccountController.account.userId}" />
+                            <h:message for="user-id-input-text" class="invalid" />
+    
+                            <h:outputLabel value="#{messages.firstname}" for="firstname-input-text" />
+                            <h:inputText id="firstname-input-text" value="#{addAccountController.account.firstname}" />
+                            <h:message for="firstname-input-text" class="invalid" />
+    
+                            <h:outputLabel value="#{messages.lastname}" for="lastname-input-text" />
+                            <h:inputText id="lastname-input-text" value="#{addAccountController.account.lastname}" />
+                            <h:message for="lastname-input-text" class="invalid" />
+                        </h:panelGrid>
+                        <div class="actions">
+                            <h:commandButton id="add-button" value="#{messages.add}" action="#{addAccountController.add}" />
+                        </div>
+                    </div>
+                </h:form>
             </ui:define>
         </ui:composition>
 <!-- Any content outside of the UI Composition tag will be ignored. -->

@@ -28,21 +28,23 @@
                         </h:commandButton>
                     </div>
                     <h:panelGroup id="find-result">
-                        <h:dataTable var="account" value="#{showAccountsController.accounts}" rendered="#{not empty showAccountsController.accounts}">
-                            <h:column>
-                                <f:facet name="header">#{messages.userid}</f:facet>
-                                #{account.userId}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">#{messages.firstname}</f:facet>
-                                #{account.firstname}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">#{messages.lastname}</f:facet>
-                                #{account.lastname}
-                            </h:column>
-                        </h:dataTable>
-                        <h:outputText value="#{messages.noAccountsText}" escape="false" rendered="#{empty showAccountsController.accounts}" />
+                        <div class="data">
+                            <h:dataTable var="account" value="#{showAccountsController.accounts}" rendered="#{not empty showAccountsController.accounts}">
+                                <h:column>
+                                    <f:facet name="header">#{messages.userId}</f:facet>
+                                    #{account.userId}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{messages.firstname}</f:facet>
+                                    #{account.firstname}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{messages.lastname}</f:facet>
+                                    #{account.lastname}
+                                </h:column>
+                            </h:dataTable>
+                            <h:outputText value="#{messages.noAccountsText}" escape="false" rendered="#{empty showAccountsController.accounts}" />
+                        </div>
                     </h:panelGroup>
                 </h:form>
             </ui:define>

@@ -10,25 +10,33 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "userId" }))
 public class Account {
+    private static final int USER_ID_MAX_LENGTH   =  50;
+    private static final int FIRSTNAME_MAX_LENGTH = 150;
+    private static final int LASTNAME_MAX_LENGTH  = 150;
 
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = "account_id_seq")
     @SequenceGenerator(name = "account_id_seq", sequenceName = "account_id_seq")
     private Integer id;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = USER_ID_MAX_LENGTH, nullable = false)
+    @NotNull @Size(max = USER_ID_MAX_LENGTH)
     private String userId;
 
-    @Column(length = 150, nullable = false)
+    @Column(length = FIRSTNAME_MAX_LENGTH, nullable = false)
+    @NotNull @Size(max = FIRSTNAME_MAX_LENGTH)
     private String firstname;
 
-    @Column(length = 150, nullable = false)
+    @Column(length = LASTNAME_MAX_LENGTH, nullable = false)
+    @NotNull @Size(max = LASTNAME_MAX_LENGTH)
     private String lastname;
 
     public Account() {
