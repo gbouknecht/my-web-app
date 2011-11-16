@@ -93,4 +93,18 @@ public class AccountDaoImplTest {
         }
         return result;
     }
+
+    @Test
+    public void persistShouldMakeAccountPersistent() {
+        Account account = testData.createRandomAccount();
+        List<Account> expectedAccounts = testData.createAccounts();
+        expectedAccounts.add(account);
+
+        accountDao.persist(account);
+        testDao.flush();
+        List<Account> actualAccounts = accountDao.findAll();
+
+        assertThat(actualAccounts, hasSize(expectedAccounts.size()));
+        assertThat(actualAccounts, hasAccounts(expectedAccounts));
+    }
 }

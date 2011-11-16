@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import name.bouknecht.mywebapp.model.Account;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class AccountDaoImpl implements AccountDao {
@@ -25,5 +26,11 @@ public class AccountDaoImpl implements AccountDao {
         return entityManager.createNamedQuery("findAccounts", Account.class)
                             .setParameter("text", "%" + text.toLowerCase() + "%")
                             .getResultList();
+    }
+
+    @Transactional
+    public void persist(Account account) {
+        assert account != null;
+        entityManager.persist(account);
     }
 }

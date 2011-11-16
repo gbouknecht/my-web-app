@@ -6,4 +6,13 @@
     <application>
         <el-resolver>name.bouknecht.mywebapp.resolver.MySpringBeanFacesELResolver</el-resolver>
     </application>
+    
+    <navigation-rule>
+        <from-view-id>/pages/add-account.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>added</from-outcome>
+            <to-view-id>/pages/added-account.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

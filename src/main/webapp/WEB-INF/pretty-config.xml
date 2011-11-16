@@ -23,6 +23,11 @@
         <pattern value="/add-account" />
         <view-id value="/pages/add-account.jsf" />
     </url-mapping>
+
+    <url-mapping id="addedAccount">
+        <pattern value="/added-account" />
+        <view-id value="/pages/added-account.jsf" />
+    </url-mapping>
     
     <url-mapping id="about">
         <pattern value="/about" />

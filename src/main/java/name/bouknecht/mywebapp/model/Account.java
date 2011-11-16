@@ -19,9 +19,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "userId" }))
 public class Account {
-    private static final int USER_ID_MAX_LENGTH   =  50;
-    private static final int FIRSTNAME_MAX_LENGTH = 150;
-    private static final int LASTNAME_MAX_LENGTH  = 150;
+    public static final int USER_ID_MAX_LENGTH   =  50;
+    public static final int FIRSTNAME_MAX_LENGTH = 150;
+    public static final int LASTNAME_MAX_LENGTH  = 150;
 
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = "account_id_seq")

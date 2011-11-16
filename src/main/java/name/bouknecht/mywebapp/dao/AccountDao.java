@@ -13,4 +13,9 @@ public interface AccountDao {
      * {@link #findAll()} if <code>text</code> is <code>null</code>.
      */
     List<Account> find(String text);
+
+    /**
+     * @param account not <code>null</code>
+     */
+    void persist(Account account);
 }
