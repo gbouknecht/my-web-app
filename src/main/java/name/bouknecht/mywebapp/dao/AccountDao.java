@@ -15,6 +15,11 @@ public interface AccountDao {
     List<Account> find(String text);
 
     /**
+     * @return <code>null</code> when not found
+     */
+    Account findByUserId(String userId);
+
+    /**
      * @param account not <code>null</code>
      */
     void persist(Account account);

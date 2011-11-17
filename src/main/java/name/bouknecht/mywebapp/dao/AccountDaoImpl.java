@@ -3,6 +3,7 @@ package name.bouknecht.mywebapp.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import name.bouknecht.mywebapp.model.Account;
@@ -26,6 +27,16 @@ public class AccountDaoImpl implements AccountDao {
         return entityManager.createNamedQuery("findAccounts", Account.class)
                             .setParameter("text", "%" + text.toLowerCase() + "%")
                             .getResultList();
+    }
+
+    public Account findByUserId(String userId) {
+        try {
+            return entityManager.createNamedQuery("findAccountByUserId", Account.class)
+                                .setParameter("userId", userId)
+                                .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Transactional

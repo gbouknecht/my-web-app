@@ -18,6 +18,8 @@ import javax.el.ELContext;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
+import name.bouknecht.mywebapp.test.util.FacesContextTestUtils;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.MessageSource;
@@ -76,11 +78,5 @@ public class MySpringBeanFacesELResolverTest {
         verify(elContext, never()).setPropertyResolved(anyBoolean());
         verify(messages, never()).getMessage(anyString(), any(Object[].class), anyString(), any(Locale.class));
         assertThat((String) value, is("valueFromSuper"));
-    }
-
-    private static abstract class FacesContextTestUtils extends FacesContext {
-        protected static void setCurrentInstance(FacesContext facesContext) {
-            FacesContext.setCurrentInstance(facesContext);
-        }
     }
 }

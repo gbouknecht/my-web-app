@@ -1,8 +1,11 @@
 package name.bouknecht.mywebapp.dao;
 
 import static name.bouknecht.mywebapp.test.hamcrest.HasAccounts.hasAccounts;
+import static name.bouknecht.mywebapp.test.hamcrest.IsSameAccount.sameAccountAs;
 import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 
 import java.util.ArrayList;
@@ -92,6 +95,22 @@ public class AccountDaoImplTest {
             }
         }
         return result;
+    }
+
+    @Test
+    public void findByUserIdShouldFindExistingAccount() {
+        Account expectedAccount = testData.createAccounts().get(0);
+
+        Account actualAccount = accountDao.findByUserId(expectedAccount.getUserId());
+
+        assertThat(actualAccount, is(sameAccountAs(expectedAccount)));
+    }
+
+    @Test
+    public void findByUserIdShouldReturnNullWhenAccountDoesNotExists() {
+        Account actualAccount = accountDao.findByUserId(testData.createRandomAccount().getUserId());
+
+        assertThat(actualAccount, is(nullValue()));
     }
 
     @Test

@@ -12,4 +12,8 @@
                            or lower(firstname) like :text
                            or lower(lastname)  like :text
     ]]></query></named-query>
+
+    <named-query name="findAccountByUserId"><query><![CDATA[
+        from Account where userId = :userId
+    ]]></query></named-query>
 </entity-mappings>
