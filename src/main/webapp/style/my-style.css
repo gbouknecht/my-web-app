@@ -107,6 +107,9 @@ body {
 #footer {
     background: lightgray;
     height: 50px;
+    padding-left: 50px;
+    line-height: 50px;
+    font-size: 8px;
 }
 
 .clear {
