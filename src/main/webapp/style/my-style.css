@@ -116,3 +116,8 @@ body {
 .invalid {
     color: red;
 }
+
+span.error {
+    font-weight: bold;
+    color: red;
+}
