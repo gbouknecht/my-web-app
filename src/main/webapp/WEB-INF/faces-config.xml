@@ -19,4 +19,18 @@
             <redirect />
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/pages/edit-account.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>notFound</from-outcome>
+            <to-view-id>/pages/account-not-found.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>saved</from-outcome>
+            <to-view-id>/pages/saved-account.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

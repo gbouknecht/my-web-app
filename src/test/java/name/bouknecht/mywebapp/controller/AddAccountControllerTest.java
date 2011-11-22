@@ -46,7 +46,7 @@ public class AddAccountControllerTest {
 
         String outcome = addAccountController.add();
 
-        verify(accountDao, times(1)).persist(account);
+        verify(accountDao).persist(account);
         assertThat(outcome, is("added"));
     }
 

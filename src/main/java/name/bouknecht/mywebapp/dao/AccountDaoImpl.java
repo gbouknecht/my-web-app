@@ -29,6 +29,11 @@ public class AccountDaoImpl implements AccountDao {
                             .getResultList();
     }
 
+    public Account findById(Integer id) {
+        if (id == null) return null;
+        return entityManager.find(Account.class, id);
+    }
+
     public Account findByUserId(String userId) {
         try {
             return entityManager.createNamedQuery("findAccountByUserId", Account.class)
@@ -43,5 +48,11 @@ public class AccountDaoImpl implements AccountDao {
     public void persist(Account account) {
         assert account != null;
         entityManager.persist(account);
+    }
+
+    @Transactional
+    public Account merge(Account account) {
+        assert account != null;
+        return entityManager.merge(account);
     }
 }

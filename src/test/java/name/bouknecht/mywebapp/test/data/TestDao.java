@@ -26,6 +26,10 @@ public class TestDao {
         }
     }
 
+    public boolean isManaged(Object entity) {
+        return entityManager.contains(entity);
+    }
+
     /**
      * Flush ORM framework's underlying session.
      *
@@ -39,5 +43,12 @@ public class TestDao {
      */
     public void flush() {
         entityManager.flush();
+    }
+
+    /**
+     * Calls {@link EntityManager#clear()}.
+     */
+    public void clear() {
+        entityManager.clear();
     }
 }

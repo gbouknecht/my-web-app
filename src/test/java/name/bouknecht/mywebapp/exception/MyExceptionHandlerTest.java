@@ -11,6 +11,7 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,7 +28,6 @@ import name.bouknecht.mywebapp.test.util.FacesContextTestUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 public class MyExceptionHandlerTest {
     private static final String CONTEXT_PATH = "/my-test-context";
@@ -43,7 +43,7 @@ public class MyExceptionHandlerTest {
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        initMocks(this);
 
         unhandledExceptionQueuedEvents = new ArrayList<ExceptionQueuedEvent>();
         exception1                     = new Exception();

@@ -17,10 +17,26 @@ public interface AccountDao {
     /**
      * @return <code>null</code> when not found
      */
+    Account findById(Integer id);
+
+    /**
+     * @return <code>null</code> when not found
+     */
     Account findByUserId(String userId);
 
     /**
      * @param account not <code>null</code>
      */
     void persist(Account account);
+
+    /**
+     * Merges given account into persistence context.
+     *
+     * <p><i>Note: the returned account will be the managed instance, not the
+     * given account.</i></p>
+     *
+     * @param account not <code>null</code>
+     * @return managed account
+     */
+    Account merge(Account account);
 }

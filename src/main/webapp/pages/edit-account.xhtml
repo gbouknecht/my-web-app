@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <head>
+        <title></title>
+    </head>
+    <body>
+<!-- Any content outside of the UI Composition tag will be ignored. -->
+        <ui:composition template="/pages/templates/default-page.xhtml">
+            <ui:define name="title">
+                #{messages.applicationName} - #{messages.editAccount}
+            </ui:define>
+            <ui:define name="header">
+                #{messages.editAccount}
+            </ui:define>
+            <ui:define name="actions">
+                <ui:include src="includes/accounts-actions.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <h:form prependId="false">
+                    <div class="form">
+                        <h:panelGrid columns="3">
+                            <h:outputLabel value="#{messages.userId}" for="user-id-input-text" />
+                            <h:outputText id="user-id-input-text" value="#{editAccountController.account.userId}" />
+                            <h:outputText value="" />
+    
+                            <h:outputLabel value="#{messages.firstname}" for="firstname-input-text" />
+                            <h:inputText id="firstname-input-text" value="#{editAccountController.account.firstname}" />
+                            <h:message for="firstname-input-text" class="invalid" />
+    
+                            <h:outputLabel value="#{messages.lastname}" for="lastname-input-text" />
+                            <h:inputText id="lastname-input-text" value="#{editAccountController.account.lastname}" />
+                            <h:message for="lastname-input-text" class="invalid" />
+                        </h:panelGrid>
+                        <div class="actions">
+                            <h:commandButton id="save-button" value="#{messages.save}" action="#{editAccountController.save}" />
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+<!-- Any content outside of the UI Composition tag will be ignored. -->
+    </body>
+</html>

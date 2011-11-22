@@ -42,6 +42,11 @@
                                     <f:facet name="header">#{messages.lastname}</f:facet>
                                     #{account.lastname}
                                 </h:column>
+                                <h:column>
+                                    <h:link outcome="edit-account" value="#{messages.edit}">
+                                        <f:param name="accountId" value="#{account.id}" />
+                                    </h:link>
+                                </h:column>
                             </h:dataTable>
                             <h:outputText value="#{messages.noAccountsText}" escape="false" rendered="#{empty showAccountsController.accounts}" />
                         </div>

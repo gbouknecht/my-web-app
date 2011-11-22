@@ -1,5 +1,6 @@
 package name.bouknecht.mywebapp.dao;
 
+import static java.lang.Integer.MAX_VALUE;
 import static name.bouknecht.mywebapp.test.hamcrest.HasAccounts.hasAccounts;
 import static name.bouknecht.mywebapp.test.hamcrest.IsSameAccount.sameAccountAs;
 import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
@@ -7,6 +8,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,6 +100,29 @@ public class AccountDaoImplTest {
     }
 
     @Test
+    public void findByIdShouldFindExistingAccount() {
+        Account expectedAccount = accountDao.findByUserId(testData.createAccounts().get(2).getUserId());
+
+        Account actualAccount = accountDao.findById(expectedAccount.getId());
+
+        assertThat(actualAccount, is(sameAccountAs(expectedAccount)));
+    }
+
+    @Test
+    public void findByIdShouldReturnNullWhenAccountDoesNotExists() {
+        Account actualAccount = accountDao.findById(MAX_VALUE);
+
+        assertThat(actualAccount, is(nullValue()));
+    }
+
+    @Test
+    public void findByIdShouldReturnNullWhenGivenIdIsNull() {
+        Account actualAccount = accountDao.findById(null);
+
+        assertThat(actualAccount, is(nullValue()));
+    }
+
+    @Test
     public void findByUserIdShouldFindExistingAccount() {
         Account expectedAccount = testData.createAccounts().get(0);
 
@@ -125,5 +150,29 @@ public class AccountDaoImplTest {
 
         assertThat(actualAccounts, hasSize(expectedAccounts.size()));
         assertThat(actualAccounts, hasAccounts(expectedAccounts));
+    }
+
+    @Test
+    public void mergeShouldUpdateAccountInDatabase() {
+        Account expectedAccount = accountDao.findByUserId(testData.createAccounts().get(1).getUserId());
+        testDao.clear();
+        expectedAccount.setFirstname(testData.createRandomAccount().getFirstname());
+
+        accountDao.merge(expectedAccount);
+        testDao.flush();
+        Account actualAccount = accountDao.findById(expectedAccount.getId());
+
+        assertThat(actualAccount, sameAccountAs(expectedAccount));
+    }
+
+    @Test
+    public void mergeShouldReturnManagedInstance() {
+        Account expectedAccount = accountDao.findByUserId(testData.createAccounts().get(1).getUserId());
+        testDao.clear();
+
+        Account actualAccount = accountDao.merge(expectedAccount);
+
+        assertTrue(testDao.isManaged(actualAccount));
+        assertThat(actualAccount, sameAccountAs(expectedAccount));
     }
 }

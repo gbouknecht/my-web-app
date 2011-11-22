@@ -29,6 +29,22 @@
         <view-id value="/pages/added-account.jsf" />
     </url-mapping>
     
+    <url-mapping id="editAccount">
+        <pattern value="/edit-account/#{accountId : editAccountController.accountId}" />
+        <view-id value="/pages/edit-account.jsf" />
+        <action>#{editAccountController.initialize}</action>
+    </url-mapping>
+
+    <url-mapping id="accountNotFound">
+        <pattern value="/account-not-found" />
+        <view-id value="/pages/account-not-found.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="savedAccount">
+        <pattern value="/saved-account" />
+        <view-id value="/pages/saved-account.jsf" />
+    </url-mapping>
+    
     <url-mapping id="unexpectedError">
         <pattern value="/unexpected-error" />
         <view-id value="/pages/unexpected-error.jsf" />
