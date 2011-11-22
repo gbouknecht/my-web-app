@@ -41,7 +41,6 @@ public class AddAccountController {
         logger.info("Adding account: " + account);
         accountDao.persist(account);
         logger.info("Added account: " + account);
-        // TODO: Handle error case.
         return "added";
     }
 

@@ -9,18 +9,25 @@ import javax.faces.context.FacesContext;
 import org.springframework.context.MessageSource;
 import org.springframework.web.jsf.el.SpringBeanFacesELResolver;
 
-/*
- * TODO: Check if this class is needed.
+/**
+ * A {@link SpringBeanFacesELResolver} that takes a {@link MessageSource} into
+ * account.
  *
- * According to the Spring Framework Reference (version 3.0.x), the
- * faces-config.xml may have a <message-bundle> element:
+ * <p>According to the Spring Framework Reference (version 3.0.x), the
+ * {@code <application>} element of the <code>faces-config.xml</code> may have
+ * a {@code <message-bundle>} element. Unfortunately, this will not resolve EL
+ * expressions like <code>#{messages.home}</code>. For that, this resolver was
+ * created. The resolver can be configured in <code>faces-config.xml</code>:
  *
+ * <pre>
+ * {@code
  * <faces-config>
  *     <application>
- *         <variable-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</variable-resolver>
- *         <message-bundle>messages</message-bundle>
+ *         <el-resolver>name.bouknecht.mywebapp.resolver.MySpringBeanFacesELResolver</el-resolver>
  *     </application>
- * </faces-config
+ * </faces-config>
+ * }
+ * </pre>
  */
 public class MySpringBeanFacesELResolver extends SpringBeanFacesELResolver {
 
