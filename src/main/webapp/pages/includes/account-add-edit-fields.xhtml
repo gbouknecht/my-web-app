@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <head>
+        <title></title>
+    </head>
+    <body>
+<!-- Any content outside of the UI Composition tag will be ignored. -->
+        <ui:composition>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="#{messages.userId}" for="user-id-input-text" />
+                <h:inputText  id="user-id-input-text" value="#{_account.userId}" rendered="#{not _userIdReadOnly}" />
+                <h:outputText                         value="#{_account.userId}" rendered="#{_userIdReadOnly}" />
+                <h:message for="user-id-input-text" class="invalid" />
+
+                <h:outputLabel value="#{messages.firstname}" for="firstname-input-text" />
+                <h:inputText id="firstname-input-text" value="#{_account.firstname}" />
+                <h:message for="firstname-input-text" class="invalid" />
+
+                <h:outputLabel value="#{messages.lastname}" for="lastname-input-text" />
+                <h:inputText id="lastname-input-text" value="#{_account.lastname}" />
+                <h:message for="lastname-input-text" class="invalid" />
+            </h:panelGrid>
+        </ui:composition>
+<!-- Any content outside of the UI Composition tag will be ignored. -->
+    </body>
+</html>

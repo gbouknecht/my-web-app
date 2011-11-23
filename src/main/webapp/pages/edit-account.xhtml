@@ -20,26 +20,15 @@
                 <ui:include src="includes/accounts-actions.xhtml" />
             </ui:define>
             <ui:define name="content">
-                <h:form prependId="false">
-                    <div class="form">
-                        <h:panelGrid columns="3">
-                            <h:outputLabel value="#{messages.userId}" for="user-id-input-text" />
-                            <h:outputText id="user-id-input-text" value="#{editAccountController.account.userId}" />
-                            <h:outputText value="" />
-    
-                            <h:outputLabel value="#{messages.firstname}" for="firstname-input-text" />
-                            <h:inputText id="firstname-input-text" value="#{editAccountController.account.firstname}" />
-                            <h:message for="firstname-input-text" class="invalid" />
-    
-                            <h:outputLabel value="#{messages.lastname}" for="lastname-input-text" />
-                            <h:inputText id="lastname-input-text" value="#{editAccountController.account.lastname}" />
-                            <h:message for="lastname-input-text" class="invalid" />
-                        </h:panelGrid>
-                        <div class="actions">
-                            <h:commandButton id="save-button" value="#{messages.save}" action="#{editAccountController.save}" />
-                        </div>
-                    </div>
-                </h:form>
+                <ui:decorate template="/pages/templates/form-fields-and-actions.xhtml">
+                    <ui:include src="/pages/includes/account-add-edit-fields.xhtml">
+                        <ui:param name="_account"        value="#{editAccountController.account}" />
+                        <ui:param name="_userIdReadOnly" value="true" />
+                    </ui:include>
+                    <ui:define name="actions">
+                        <h:commandButton id="save-button" value="#{messages.save}" action="#{editAccountController.save}" />
+                    </ui:define>
+                </ui:decorate>
             </ui:define>
         </ui:composition>
 <!-- Any content outside of the UI Composition tag will be ignored. -->
