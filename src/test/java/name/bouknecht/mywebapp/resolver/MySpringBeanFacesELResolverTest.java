@@ -7,10 +7,10 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.util.Locale;
 
@@ -22,22 +22,21 @@ import name.bouknecht.mywebapp.test.util.FacesContextTestUtils;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.springframework.context.MessageSource;
 
 public class MySpringBeanFacesELResolverTest {
-    private MySpringBeanFacesELResolver elResolver;
-    private ELContext                   elContext;
-    private FacesContext                facesContext;
-    private UIViewRoot                  uiViewRoot;
-    private MessageSource               messages;
+    private       MySpringBeanFacesELResolver elResolver;
+    private @Mock ELContext                   elContext;
+    private @Mock FacesContext                facesContext;
+    private @Mock UIViewRoot                  uiViewRoot;
+    private @Mock MessageSource               messages;
 
     @Before
     public void setUp() {
+        initMocks(this);
+
         elResolver   = spy(new MySpringBeanFacesELResolver());
-        elContext    = mock(ELContext.class);
-        facesContext = mock(FacesContext.class);
-        uiViewRoot   = mock(UIViewRoot.class);
-        messages     = mock(MessageSource.class);
 
         FacesContextTestUtils.setCurrentInstance(facesContext);
     }

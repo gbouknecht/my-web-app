@@ -6,10 +6,10 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.MockitoAnnotations.initMocks;
 import static org.springframework.test.util.ReflectionTestUtils.setField;
 
 import javax.faces.application.FacesMessage;
@@ -21,19 +21,20 @@ import name.bouknecht.mywebapp.test.data.TestData;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 public class AddAccountControllerTest {
-    private TestData             data;
-    private AddAccountController addAccountController;
-    private AccountDao           accountDao;
-    private FacesContext         facesContext;
+    private       AddAccountController addAccountController;
+    private       TestData             data;
+    private @Mock AccountDao           accountDao;
+    private @Mock FacesContext         facesContext;
 
     @Before
     public void setUp() {
-        data                 = new TestData();
+        initMocks(this);
+
         addAccountController = new AddAccountController();
-        accountDao           = mock(AccountDao.class);
-        facesContext         = mock(FacesContext.class);
+        data                 = new TestData();
 
         setField(addAccountController, "accountDao",   accountDao);
         setField(addAccountController, "facesContext", facesContext);

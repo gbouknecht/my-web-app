@@ -4,7 +4,7 @@ import static name.bouknecht.mywebapp.test.hamcrest.HasAccounts.hasAccounts;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
+import static org.mockito.MockitoAnnotations.initMocks;
 import static org.springframework.test.util.ReflectionTestUtils.setField;
 
 import java.util.List;
@@ -15,17 +15,19 @@ import name.bouknecht.mywebapp.test.data.TestData;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 public class ShowAccountsControllerTest {
-    private TestData               data;
-    private ShowAccountsController showAccountsController;
-    private AccountDao             accountDao;
+    private       ShowAccountsController showAccountsController;
+    private       TestData               data;
+    private @Mock AccountDao             accountDao;
 
     @Before
     public void setUp() {
-        data                   = new TestData();
+        initMocks(this);
+
         showAccountsController = new ShowAccountsController();
-        accountDao             = mock(AccountDao.class);
+        data                   = new TestData();
 
         setField(showAccountsController, "accountDao", accountDao);
     }

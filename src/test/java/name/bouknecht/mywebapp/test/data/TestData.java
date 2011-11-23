@@ -8,6 +8,13 @@ import java.util.Random;
 
 import name.bouknecht.mywebapp.model.Account;
 
+/**
+ * This class is used by the unit tests to create test data.
+ *
+ * <p><i>Note: unit tests may change the data that is returned by this class
+ * (even using reflection when needed). Therefore, the data must not be cached
+ * (by static fields for example). Fresh copies should be returned instead.</i></p>
+ */
 public class TestData {
     private final Random random = new Random();
 

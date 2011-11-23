@@ -4,24 +4,25 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.sameInstance;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 import javax.faces.context.ExceptionHandler;
 import javax.faces.context.ExceptionHandlerFactory;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 public class MyExceptionHandlerFactoryTest {
-    private ExceptionHandlerFactory myExceptionHandlerFactory;
-    private ExceptionHandlerFactory wrappedExceptionHandlerFactory;
-    private ExceptionHandler        wrappedExceptionHandler;
+    private       ExceptionHandlerFactory myExceptionHandlerFactory;
+    private @Mock ExceptionHandlerFactory wrappedExceptionHandlerFactory;
+    private @Mock ExceptionHandler        wrappedExceptionHandler;
 
     @Before
     public void setUp() {
-        wrappedExceptionHandlerFactory = mock(ExceptionHandlerFactory.class);
-        wrappedExceptionHandler        = mock(ExceptionHandler.class);
-        myExceptionHandlerFactory      = new MyExceptionHandlerFactory(wrappedExceptionHandlerFactory);
+        initMocks(this);
+
+        myExceptionHandlerFactory = new MyExceptionHandlerFactory(wrappedExceptionHandlerFactory);
     }
 
     @Test

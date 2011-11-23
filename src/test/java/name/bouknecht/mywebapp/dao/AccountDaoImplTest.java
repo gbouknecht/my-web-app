@@ -33,13 +33,14 @@ public class AccountDaoImplTest {
     @Autowired
     private AccountDao accountDao;
 
+    private TestData testData;
+
     @Autowired
     private TestDao testDao;
 
-    private final TestData testData = new TestData();
-
     @Before
     public void setUp() {
+        testData = new TestData();
         testDao.insertTestData(testData);
     }
 

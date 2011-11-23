@@ -6,7 +6,7 @@ import static java.util.Locale.JAPAN;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
+import static org.mockito.MockitoAnnotations.initMocks;
 import static org.springframework.web.context.WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE;
 
 import java.util.HashMap;
@@ -22,26 +22,24 @@ import name.bouknecht.mywebapp.test.util.FacesContextTestUtils;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.MessageSource;
 import org.springframework.web.context.WebApplicationContext;
 
 public class MessageUtilsTest {
-    private FacesContext          facesContext;
-    private ExternalContext       externalContext;
-    private Map<String, Object>   applicationMap;
-    private WebApplicationContext webApplicationContext;
-    private MessageSource         messages;
-    private UIViewRoot            viewRoot;
+    private @Mock FacesContext          facesContext;
+    private @Mock ExternalContext       externalContext;
+    private       Map<String, Object>   applicationMap;
+    private @Mock WebApplicationContext webApplicationContext;
+    private @Mock MessageSource         messages;
+    private @Mock UIViewRoot            viewRoot;
 
     @Before
     public void setUp() {
-        facesContext          = mock(FacesContext.class);
-        externalContext       = mock(ExternalContext.class);
-        webApplicationContext = mock(WebApplicationContext.class);
-        applicationMap        = new HashMap<String, Object>();
-        messages              = mock(MessageSource.class);
-        viewRoot              = mock(UIViewRoot.class);
+        initMocks(this);
+
+        applicationMap = new HashMap<String, Object>();
 
         FacesContextTestUtils.setCurrentInstance(facesContext);
         given(facesContext.getExternalContext()).willReturn(externalContext);
