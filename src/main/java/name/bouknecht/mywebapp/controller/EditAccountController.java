@@ -24,7 +24,7 @@ public class EditAccountController {
         account = accountDao.findById(accountId);
         if (account == null) {
             logger.warn("Account with ID {} not found", accountId);
-            return "notFound";
+            return "pretty:accountNotFound";
         }
         return null;
     }
@@ -33,7 +33,7 @@ public class EditAccountController {
         logger.info("Saving account: " + account);
         account = accountDao.merge(account);
         logger.info("Saved account: " + account);
-        return "saved";
+        return "pretty:savedAccount";
     }
 
     public Integer getAccountId() {

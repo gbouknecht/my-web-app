@@ -41,7 +41,7 @@ public class AddAccountController {
         logger.info("Adding account: " + account);
         accountDao.persist(account);
         logger.info("Added account: " + account);
-        return "added";
+        return "pretty:addedAccount";
     }
 
     private String notifyUserThatUserIdAlreadyExists() {

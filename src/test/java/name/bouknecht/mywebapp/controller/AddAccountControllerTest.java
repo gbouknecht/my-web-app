@@ -41,14 +41,14 @@ public class AddAccountControllerTest {
     }
 
     @Test
-    public void shouldPersistAccountAndHasOutcomeAddedWhenSuccessful() {
+    public void shouldPersistAccountAndNavigateToAddedAccountWhenSuccessful() {
         Account account = data.createRandomAccount();
         setField(addAccountController, "account", account);
 
         String outcome = addAccountController.add();
 
         verify(accountDao).persist(account);
-        assertThat(outcome, is("added"));
+        assertThat(outcome, is("pretty:addedAccount"));
     }
 
     @Test

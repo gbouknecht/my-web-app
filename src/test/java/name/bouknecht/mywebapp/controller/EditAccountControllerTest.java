@@ -45,23 +45,23 @@ public class EditAccountControllerTest {
     }
 
     @Test
-    public void shouldHaveOutcomeNotFoundAfterInitializationWhenAccountDoesNotExists() {
+    public void shouldNavigateToAccountNotFoundAfterInitializationWhenAccountDoesNotExists() {
         setField(editAccountController, "accountId", 13);
         given(accountDao.findById(13)).willReturn(null);
 
         String outcome = editAccountController.initialize();
 
-        assertThat(outcome, is("notFound"));
+        assertThat(outcome, is("pretty:accountNotFound"));
     }
 
     @Test
-    public void shouldSaveAccountAndHasOutcomeSavedWhenSuccessful() {
+    public void shouldSaveAccountAndNavigateToSavedAccountWhenSuccessful() {
         Account account = data.createRandomAccount();
         setField(editAccountController, "account", account);
 
         String outcome = editAccountController.save();
 
         verify(accountDao).merge(account);
-        assertThat(outcome, is("saved"));
+        assertThat(outcome, is("pretty:savedAccount"));
     }
 }
