@@ -47,6 +47,11 @@
                                         <f:param name="accountId" value="#{account.id}" />
                                     </h:link>
                                 </h:column>
+                                <h:column>
+                                    <h:link outcome="pretty:removeAccount" value="#{messages.remove}">
+                                        <f:param name="accountId" value="#{account.id}" />
+                                    </h:link>
+                                </h:column>
                             </h:dataTable>
                             <h:outputText value="#{messages.noAccountsText}" escape="false" rendered="#{empty showAccountsController.accounts}" />
                         </div>

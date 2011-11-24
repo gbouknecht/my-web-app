@@ -41,7 +41,7 @@ public class AccountDaoImplTest {
     @Before
     public void setUp() {
         testData = new TestData();
-        testDao.insertTestData(testData);
+        testDao.insertTestData(testData).flush();
     }
 
     @Test
@@ -175,5 +175,16 @@ public class AccountDaoImplTest {
 
         assertTrue(testDao.isManaged(actualAccount));
         assertThat(actualAccount, sameAccountAs(expectedAccount));
+    }
+
+    @Test
+    public void removeShouldRemoveAccountFromDatabase() {
+        Account account = accountDao.findByUserId(testData.createAccounts().get(1).getUserId());
+
+        accountDao.remove(account);
+        testDao.flush();
+        Account actualAccount = accountDao.findById(account.getId());
+
+        assertThat(actualAccount, is(nullValue()));
     }
 }

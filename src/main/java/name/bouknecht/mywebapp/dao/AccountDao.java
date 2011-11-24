@@ -39,4 +39,9 @@ public interface AccountDao {
      * @return managed account
      */
     Account merge(Account account);
+
+    /**
+     * @param account not <code>null</code>
+     */
+    void remove(Account account);
 }

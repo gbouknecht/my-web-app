@@ -55,4 +55,10 @@ public class AccountDaoImpl implements AccountDao {
         assert account != null;
         return entityManager.merge(account);
     }
+
+    @Transactional
+    public void remove(Account account) {
+        assert account != null;
+        entityManager.remove(account);
+    }
 }

@@ -34,6 +34,17 @@
         <view-id value="/pages/edit-account.jsf" />
         <action>#{editAccountController.initialize}</action>
     </url-mapping>
+    
+    <url-mapping id="removeAccount">
+        <pattern value="/remove-account/#{accountId : removeAccountController.accountId}" />
+        <view-id value="/pages/not-applicable.jsf" />
+        <action>#{removeAccountController.remove}</action>
+    </url-mapping>
+
+    <url-mapping id="removedAccount">
+        <pattern value="/removed-account" />
+        <view-id value="/pages/removed-account.jsf" />
+    </url-mapping>
 
     <url-mapping id="accountNotFound">
         <pattern value="/account-not-found" />

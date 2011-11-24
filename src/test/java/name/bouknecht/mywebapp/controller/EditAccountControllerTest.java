@@ -55,7 +55,7 @@ public class EditAccountControllerTest {
     }
 
     @Test
-    public void shouldSaveAccountAndHasOutcomeSavedWhenSuccesful() {
+    public void shouldSaveAccountAndHasOutcomeSavedWhenSuccessful() {
         Account account = data.createRandomAccount();
         setField(editAccountController, "account", account);
 
