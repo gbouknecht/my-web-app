@@ -3,13 +3,11 @@ package name.bouknecht.mywebapp.controller;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static org.springframework.test.util.ReflectionTestUtils.setField;
-import name.bouknecht.mywebapp.dao.AccountDao;
 import name.bouknecht.mywebapp.model.Account;
+import name.bouknecht.mywebapp.service.AccountService;
 import name.bouknecht.mywebapp.test.data.TestData;
 
 import org.junit.Before;
@@ -19,7 +17,7 @@ import org.mockito.Mock;
 public class RemoveAccountControllerTest {
     private       RemoveAccountController removeAccountController;
     private       TestData                data;
-    private @Mock AccountDao              accountDao;
+    private @Mock AccountService          accountService;
 
     @Before
     public void setUp() {
@@ -28,29 +26,26 @@ public class RemoveAccountControllerTest {
         removeAccountController = new RemoveAccountController();
         data                    = new TestData();
 
-        setField(removeAccountController, "accountDao", accountDao);
+        setField(removeAccountController, "accountService", accountService);
     }
 
     @Test
-    public void shouldRemoveAccountAndNavigateToRemovedAccountWhenSuccessful() {
-        Account expectedAccount = data.createRandomAccount();
-        setField(removeAccountController, "accountId", 13);
-        given(accountDao.findById(13)).willReturn(expectedAccount);
-
-        String outcome = removeAccountController.remove();
-
-        verify(accountDao).remove(expectedAccount);
-        assertThat(outcome, is("pretty:removedAccount"));
+    public void shouldRemoveAccountAndNavigateToRemovedAccount() {
+        verifyRemoveByIdCallAndOutcome(data.createRandomAccount(), "pretty:removedAccount");
     }
 
     @Test
-    public void shouldNotRemoveAccountAndNavigateToAccountNotFoundWhenAccountDoesNotExists() {
+    public void shouldRemoveAccountAndNavigateToAccountNotFoundWhenAccountDoesNotExists() {
+        verifyRemoveByIdCallAndOutcome(null, "pretty:accountNotFound");
+    }
+
+    private void verifyRemoveByIdCallAndOutcome(Account removedAccount, String expectedOutcome) {
         setField(removeAccountController, "accountId", 13);
-        given(accountDao.findById(13)).willReturn(null);
+        given(accountService.removeById(13)).willReturn(removedAccount);
 
         String outcome = removeAccountController.remove();
 
-        verify(accountDao, never()).remove(any(Account.class));
-        assertThat(outcome, is("pretty:accountNotFound"));
+        verify(accountService).removeById(13);
+        assertThat(outcome, is(expectedOutcome));
     }
 }

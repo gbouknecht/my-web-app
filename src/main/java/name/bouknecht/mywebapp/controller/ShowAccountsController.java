@@ -3,8 +3,8 @@ package name.bouknecht.mywebapp.controller;
 import java.util.List;
 
 import name.bouknecht.mywebapp.annotation.RequestScoped;
-import name.bouknecht.mywebapp.dao.AccountDao;
 import name.bouknecht.mywebapp.model.Account;
+import name.bouknecht.mywebapp.service.AccountService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 public class ShowAccountsController {
 
     @Autowired
-    private AccountDao accountDao;
+    private AccountService accountService;
 
     private List<Account> accounts;
     private String        findText;
@@ -24,7 +24,7 @@ public class ShowAccountsController {
     }
 
     public void find() {
-        accounts = accountDao.find(findText);
+        accounts = accountService.find(findText);
     }
 
     public List<Account> getAccounts() {

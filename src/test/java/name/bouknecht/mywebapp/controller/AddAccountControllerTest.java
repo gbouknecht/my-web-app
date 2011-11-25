@@ -15,8 +15,8 @@ import static org.springframework.test.util.ReflectionTestUtils.setField;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import name.bouknecht.mywebapp.dao.AccountDao;
 import name.bouknecht.mywebapp.model.Account;
+import name.bouknecht.mywebapp.service.AccountService;
 import name.bouknecht.mywebapp.test.data.TestData;
 
 import org.junit.Before;
@@ -26,7 +26,7 @@ import org.mockito.Mock;
 public class AddAccountControllerTest {
     private       AddAccountController addAccountController;
     private       TestData             data;
-    private @Mock AccountDao           accountDao;
+    private @Mock AccountService       accountService;
     private @Mock FacesContext         facesContext;
 
     @Before
@@ -36,18 +36,18 @@ public class AddAccountControllerTest {
         addAccountController = new AddAccountController();
         data                 = new TestData();
 
-        setField(addAccountController, "accountDao",   accountDao);
-        setField(addAccountController, "facesContext", facesContext);
+        setField(addAccountController, "accountService", accountService);
+        setField(addAccountController, "facesContext",   facesContext);
     }
 
     @Test
-    public void shouldPersistAccountAndNavigateToAddedAccountWhenSuccessful() {
+    public void shouldPersistAccountAndNavigateToAddedAccount() {
         Account account = data.createRandomAccount();
         setField(addAccountController, "account", account);
 
         String outcome = addAccountController.add();
 
-        verify(accountDao).persist(account);
+        verify(accountService).persist(account);
         assertThat(outcome, is("pretty:addedAccount"));
     }
 
@@ -55,11 +55,11 @@ public class AddAccountControllerTest {
     public void shouldNotPersistAccountButNotifyUserWhenUserIdAlreadyExists() {
         Account account = data.createRandomAccount();
         setField(addAccountController, "account", account);
-        given(accountDao.findByUserId(account.getUserId())).willReturn(data.createRandomAccount());
+        given(accountService.userIdExists(account.getUserId())).willReturn(true);
 
         String outcome = addAccountController.add();
 
-        verify(accountDao, never()).persist(account);
+        verify(accountService, never()).persist(account);
         verify(facesContext, times(1)).addMessage(eq("user-id-input-text"), any(FacesMessage.class));
         assertThat(outcome, is(nullValue()));
     }

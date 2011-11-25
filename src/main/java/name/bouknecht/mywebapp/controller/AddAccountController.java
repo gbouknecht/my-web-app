@@ -3,8 +3,8 @@ package name.bouknecht.mywebapp.controller;
 import javax.faces.context.FacesContext;
 
 import name.bouknecht.mywebapp.annotation.RequestScoped;
-import name.bouknecht.mywebapp.dao.AccountDao;
 import name.bouknecht.mywebapp.model.Account;
+import name.bouknecht.mywebapp.service.AccountService;
 import name.bouknecht.mywebapp.util.MessageUtils;
 
 import org.slf4j.Logger;
@@ -18,7 +18,7 @@ public class AddAccountController {
     private static final Logger logger = LoggerFactory.getLogger(AddAccountController.class);
 
     @Autowired
-    private AccountDao accountDao;
+    private AccountService accountService;
 
     @Autowired
     private FacesContext facesContext;
@@ -34,12 +34,12 @@ public class AddAccountController {
     }
 
     private boolean userIdNotAlreadyExists() {
-        return accountDao.findByUserId(account.getUserId()) == null;
+        return !accountService.userIdExists(account.getUserId());
     }
 
     private String addAccount() {
         logger.info("Adding account: " + account);
-        accountDao.persist(account);
+        accountService.persist(account);
         logger.info("Added account: " + account);
         return "pretty:addedAccount";
     }

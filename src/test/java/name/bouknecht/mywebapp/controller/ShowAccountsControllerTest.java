@@ -9,8 +9,8 @@ import static org.springframework.test.util.ReflectionTestUtils.setField;
 
 import java.util.List;
 
-import name.bouknecht.mywebapp.dao.AccountDao;
 import name.bouknecht.mywebapp.model.Account;
+import name.bouknecht.mywebapp.service.AccountService;
 import name.bouknecht.mywebapp.test.data.TestData;
 
 import org.junit.Before;
@@ -20,7 +20,7 @@ import org.mockito.Mock;
 public class ShowAccountsControllerTest {
     private       ShowAccountsController showAccountsController;
     private       TestData               data;
-    private @Mock AccountDao             accountDao;
+    private @Mock AccountService         accountService;
 
     @Before
     public void setUp() {
@@ -29,13 +29,13 @@ public class ShowAccountsControllerTest {
         showAccountsController = new ShowAccountsController();
         data                   = new TestData();
 
-        setField(showAccountsController, "accountDao", accountDao);
+        setField(showAccountsController, "accountService", accountService);
     }
 
     @Test
     public void shouldContainAllAccountsAfterInitialization() {
         List<Account> expectedAccounts = data.createAccounts();
-        given(accountDao.find(null)).willReturn(expectedAccounts);
+        given(accountService.find(null)).willReturn(expectedAccounts);
 
         showAccountsController.initialize();
         List<Account> actualAccounts = showAccountsController.getAccounts();
@@ -48,8 +48,8 @@ public class ShowAccountsControllerTest {
     public void shouldContainFoundAccountsAfterFind() {
         List<Account> expectedAccounts = data.createAccounts();
         expectedAccounts.remove(0);
-        given(accountDao.find(null)).willReturn(data.createAccounts());
-        given(accountDao.find("abc")).willReturn(expectedAccounts);
+        given(accountService.find(null)).willReturn(data.createAccounts());
+        given(accountService.find("abc")).willReturn(expectedAccounts);
 
         showAccountsController.initialize();
         showAccountsController.setFindText("abc");

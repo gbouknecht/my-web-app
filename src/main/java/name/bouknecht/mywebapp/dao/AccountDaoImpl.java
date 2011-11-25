@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import name.bouknecht.mywebapp.model.Account;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class AccountDaoImpl implements AccountDao {
@@ -44,19 +43,16 @@ public class AccountDaoImpl implements AccountDao {
         }
     }
 
-    @Transactional
     public void persist(Account account) {
         assert account != null;
         entityManager.persist(account);
     }
 
-    @Transactional
     public Account merge(Account account) {
         assert account != null;
         return entityManager.merge(account);
     }
 
-    @Transactional
     public void remove(Account account) {
         assert account != null;
         entityManager.remove(account);
