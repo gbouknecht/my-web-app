@@ -108,6 +108,12 @@ body {
     margin-top: 2ex;
 }
 
+#content div.error {
+    margin-bottom: 2ex;
+    font-weight: bold;
+    color: red;
+}
+
 #footer {
     background: lightgray;
     height: 50px;
@@ -121,10 +127,5 @@ body {
 }
 
 .invalid {
-    color: red;
-}
-
-span.error {
-    font-weight: bold;
     color: red;
 }

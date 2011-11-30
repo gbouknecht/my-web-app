@@ -11,18 +11,13 @@
 <!-- Any content outside of the UI Composition tag will be ignored. -->
         <ui:composition template="/pages/templates/default-page.xhtml">
             <ui:define name="title">
-                #{messages.applicationName} - #{messages.accountNotFound}
+                #{messages.applicationName} - #{messages.loggedOut}
             </ui:define>
             <ui:define name="header">
-                #{messages.accountNotFound}
-            </ui:define>
-            <ui:define name="actions">
-                <ui:include src="/pages/includes/accounts-actions.xhtml" />
+                #{messages.loggedOut}
             </ui:define>
             <ui:define name="content">
-                <div class="error">
-                    <h:outputText value="#{messages.accountNotFoundText}" escape="false" />
-                </div>
+                <h:outputText value="#{messages.loggedOutText}" escape="false" />
             </ui:define>
         </ui:composition>
 <!-- Any content outside of the UI Composition tag will be ignored. -->

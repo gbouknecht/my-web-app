@@ -17,7 +17,9 @@
                 #{messages.unexpectedError}
             </ui:define>
             <ui:define name="content">
-                <h:outputText value="#{messages.unexpectedErrorText}" escape="false" />
+                <div class="error">
+                    <h:outputText value="#{messages.unexpectedErrorText}" escape="false" />
+                </div>
             </ui:define>
         </ui:composition>
 <!-- Any content outside of the UI Composition tag will be ignored. -->
