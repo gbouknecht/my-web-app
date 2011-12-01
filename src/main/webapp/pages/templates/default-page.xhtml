@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -19,6 +20,9 @@
             <ul>
                 <li><h:link outcome="pretty:home"     value="#{messages.home}" /></li>
                 <li><h:link outcome="pretty:accounts" value="#{messages.accounts}" /></li>
+                <c:if test="#{request.userPrincipal != null}">
+                    <li><a href="#{request.contextPath}/logout">#{messages.logout}</a></li>
+                </c:if>
             </ul>
         </div>
         <div id="actions-and-content">
