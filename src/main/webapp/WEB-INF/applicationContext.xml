@@ -31,14 +31,12 @@
 
     <tx:annotation-driven />
     
-    <security:http auto-config="true">
+    <security:http auto-config="true" access-denied-page="/access-denied">
         <security:intercept-url pattern="/style/**" filters="none" />
 
-        <security:intercept-url pattern="/login"            access="IS_AUTHENTICATED_ANONYMOUSLY" />
-        <security:intercept-url pattern="/login/*"          access="IS_AUTHENTICATED_ANONYMOUSLY" />
-        <security:intercept-url pattern="/logged-out"       access="IS_AUTHENTICATED_ANONYMOUSLY" />
-        <security:intercept-url pattern="/unexpected-error" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-        <security:intercept-url pattern="/**"               access="ROLE_USER" />
+        <security:intercept-url pattern="/pages/**"    access="ROLE_NOBODY" />
+        <security:intercept-url pattern="/accounts/**" access="ROLE_ADMIN" />
+        <security:intercept-url pattern="/**"          access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
         <security:form-login login-page="/login" authentication-failure-url="/login/retry" />
 
@@ -48,7 +46,8 @@
     <security:authentication-manager>
         <security:authentication-provider>
             <security:user-service>
-                <security:user name="testuser" password="testuser" authorities="ROLE_USER" />
+                <security:user name="testuser"  password="testuser"  authorities="ROLE_USER" />
+                <security:user name="testadmin" password="testadmin" authorities="ROLE_USER, ROLE_ADMIN" />
             </security:user-service>
         </security:authentication-provider>
     </security:authentication-manager>

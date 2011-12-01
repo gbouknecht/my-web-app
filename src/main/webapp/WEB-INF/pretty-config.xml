@@ -17,6 +17,11 @@
         <pattern value="/logged-out" />
         <view-id value="/pages/logged-out.jsf" />
     </url-mapping>
+    
+    <url-mapping id="accessDenied">
+        <pattern value="/access-denied" />
+        <view-id value="/pages/access-denied.jsf" />
+    </url-mapping>
 
     <url-mapping id="home">
         <pattern value="/" />
@@ -29,45 +34,45 @@
     </url-mapping>
 
     <url-mapping id="showAccounts">
-        <pattern value="/show-accounts" />
+        <pattern value="/accounts/show" />
         <view-id value="/pages/show-accounts.jsf" />
         <action>#{showAccountsController.initialize}</action>
     </url-mapping>
 
     <url-mapping id="addAccount">
-        <pattern value="/add-account" />
+        <pattern value="/accounts/add" />
         <view-id value="/pages/add-account.jsf" />
     </url-mapping>
 
     <url-mapping id="addedAccount">
-        <pattern value="/added-account" />
+        <pattern value="/accounts/added" />
         <view-id value="/pages/added-account.jsf" />
     </url-mapping>
     
     <url-mapping id="editAccount">
-        <pattern value="/edit-account/#{accountId : editAccountController.accountId}" />
+        <pattern value="/accounts/edit/#{accountId : editAccountController.accountId}" />
         <view-id value="/pages/edit-account.jsf" />
         <action>#{editAccountController.initialize}</action>
     </url-mapping>
     
     <url-mapping id="removeAccount">
-        <pattern value="/remove-account/#{accountId : removeAccountController.accountId}" />
+        <pattern value="/accounts/remove/#{accountId : removeAccountController.accountId}" />
         <view-id value="/pages/not-applicable.jsf" />
         <action>#{removeAccountController.remove}</action>
     </url-mapping>
 
     <url-mapping id="removedAccount">
-        <pattern value="/removed-account" />
+        <pattern value="/accounts/removed" />
         <view-id value="/pages/removed-account.jsf" />
     </url-mapping>
 
     <url-mapping id="accountNotFound">
-        <pattern value="/account-not-found" />
+        <pattern value="/accounts/not-found" />
         <view-id value="/pages/account-not-found.jsf" />
     </url-mapping>
     
     <url-mapping id="savedAccount">
-        <pattern value="/saved-account" />
+        <pattern value="/accounts/saved" />
         <view-id value="/pages/saved-account.jsf" />
     </url-mapping>
     
